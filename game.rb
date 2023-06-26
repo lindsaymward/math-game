@@ -32,27 +32,35 @@ class Game
       puts @announcements[1]
       @turn += 1
       @index += 1
+      puts "P1: #{@player_one.lives}/3 vs P2: #{@player_two.lives}/3"
     else
       puts @announcements[0]
-      # @turn % 2 == 0 ? @player_two[:lives] -= 1 : @player_one[:lives] -= 1
+      @turn % 2 == 0 ? @player_two.lives -= 1 : @player_one.lives -= 1
       @turn += 1
       @index += 1
     end
+
+    puts "P1: #{@player_one.lives}/3 vs P2: #{@player_two.lives}/3"
 
     end_game?
   end
 
   def end_game?
-    # if @player_one[:lives] == 0
-    #   puts "Player 2 has won the game with a score of #{@player_two[:lives]}/3!"
-    # end
-    # if @player_two[:lives] == 0
-    #   puts "Player 1 has won the game with a score of #{@player_one[:lives]}/3!"
-    # end
-    if @index < 20 
+    if @player_one.lives == 0
+      puts "Player 2 has won the game with a score of #{@player_two.lives}/3!"
+      puts "----- GAME OVER -----"
+      puts "Good bye!"
+    elsif @player_two.lives == 0
+      puts "Player 1 has won the game with a score of #{@player_one.lives}/3!"
+      puts "----- GAME OVER -----"
+      puts "Good bye!"
+    elsif @index < 20 
+      puts "----- NEW TURN -----"
       ask_question 
     else
       puts "It is a tie!"
+      puts "----- GAME OVER -----"
+      puts "Good bye!"
     end
 
   end
